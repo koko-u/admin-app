@@ -1,5 +1,11 @@
 <h1>{{ title }}</h1>
-
+<nav>
+  <a [routerLink]="['employees']"
+     [routerLinkActive]="'active'"
+  >
+    Employee List
+  </a>
+</nav>
 <!--<app-employee-list></app-employee-list>-->
 <router-outlet></router-outlet>
 <app-operations></app-operations>
