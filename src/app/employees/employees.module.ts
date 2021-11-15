@@ -19,7 +19,7 @@ import { EmployeeService } from "./employee.service"
     EmployeeListComponent,
   ],
   providers: [
-    EmployeeService,
+    EmployeeService
   ]
 })
 export class EmployeesModule { }

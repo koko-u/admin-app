@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OperationService } from "../operation.service"
 
 @Component({
   selector: 'app-operations',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OperationsComponent implements OnInit {
 
-  constructor() { }
+  get isEmpty(): boolean {
+    return this.operationService.operations.length === 0;
+  }
+
+  constructor(
+    public operationService: OperationService,
+  ) { }
 
   ngOnInit(): void {
   }
 
+  clearLogs() {
+    this.operationService.clear();
+  }
 }

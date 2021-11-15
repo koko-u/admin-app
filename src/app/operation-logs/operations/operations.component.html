@@ -1,1 +1,12 @@
-<p>operations works!</p>
+<div *ngIf="!isEmpty">
+  <h2>Operation Logs</h2>
+  <button
+    class="clear"
+    (click)="clearLogs()"
+  >
+    Clear Logs
+  </button>
+  <div *ngFor="let operation of operationService.operations">
+    {{ operation }}
+  </div>
+</div>

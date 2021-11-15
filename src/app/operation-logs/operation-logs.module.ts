@@ -2,17 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OperationsComponent } from './operations/operations.component';
 
-
-
 @NgModule({
   declarations: [
-    OperationsComponent
+    OperationsComponent,
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    OperationsComponent
+    OperationsComponent,
+  ],
+  providers: [
   ]
 })
 export class OperationLogsModule { }
