@@ -12,4 +12,8 @@ export class Employee {
     return this.id === other.id &&
            this.name === other.name;
   }
+
+  toString(): string {
+    return `Employee[id=${this.id}, name=${this.name}]`
+  }
 }

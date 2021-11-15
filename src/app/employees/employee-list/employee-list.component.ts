@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from "../employee.model"
 import { EmployeeService } from "../employee.service"
+import { OperationService } from "../../operation-logs/operation.service"
 
 @Component({
   selector: 'app-employee-list',
@@ -14,6 +15,7 @@ export class EmployeeListComponent implements OnInit {
 
   constructor(
     private employeeService: EmployeeService,
+    private operationService: OperationService,
   ) {
     this.selectedEmployee = undefined;
     this.employeeList = [];
@@ -30,6 +32,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   onSelect(employee: Employee) {
+    this.operationService.add('Select', `${this.constructor.name} - ${employee}`)
     this.selectedEmployee = employee;
   }
 }

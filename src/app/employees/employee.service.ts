@@ -12,7 +12,7 @@ export class EmployeeService {
   ) { }
 
   getEmployeeList(): Observable<Employee[]> {
-    this.operationService.add('Init', `${this.constructor.name} get all employees.`)
+    this.operationService.add('Init', `${this.constructor.name} - get all employees.`)
     return of(employees)
   }
 }
