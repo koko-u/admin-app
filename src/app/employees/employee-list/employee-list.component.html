@@ -10,20 +10,6 @@
   </li>
 </ul>
 
-<ng-container *ngIf="selectedEmployee">
-  <h2>{{ selectedEmployee.name }}</h2>
-
-  <div>
-    <span>ID:</span>{{ selectedEmployee.id }}
-  </div>
-
-  <div>
-    <label>Name:
-      <input
-        type="text"
-        placeholder="Name..."
-        [(ngModel)]="selectedEmployee.name"
-      >
-    </label>
-  </div>
-</ng-container>
+<app-employee-edit
+  [employee]="selectedEmployee"
+></app-employee-edit>

@@ -16,7 +16,6 @@ import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
   ],
   exports: [
     EmployeeListComponent,
-    EmployeeEditComponent,
   ]
 })
 export class EmployeesModule { }

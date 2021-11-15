@@ -1,1 +1,18 @@
-<p>employee-edit works!</p>
+<ng-container *ngIf="employee">
+  <h2>{{ employee.name }}</h2>
+
+  <div>
+    <span>ID:</span>{{ employee.id }}
+  </div>
+
+  <div>
+    <label>Name:
+      <input
+        type="text"
+        placeholder="Name..."
+        [(ngModel)]="employee.name"
+      >
+    </label>
+  </div>
+</ng-container>
+
