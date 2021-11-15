@@ -5,6 +5,12 @@
 </div>
 
 <div>
-  <span>Name:</span>{{ employee.name }}
+  <label>Name:
+    <input
+      type="text"
+      placeholder="Name..."
+      [(ngModel)]="employee.name"
+    >
+  </label>
 </div>
 
