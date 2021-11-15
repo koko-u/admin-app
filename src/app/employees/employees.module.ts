@@ -10,6 +10,9 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    EmployeeListComponent,
   ]
 })
 export class EmployeesModule { }
