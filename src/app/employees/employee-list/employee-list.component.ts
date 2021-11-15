@@ -10,11 +10,11 @@ import { employees } from "../mock/employees"
 })
 export class EmployeeListComponent implements OnInit {
 
-  employee: Employee;
+  selectedEmployee?: Employee;
   employeeList: Employee[];
 
   constructor() {
-    this.employee = new Employee(1, '田中 次郎');
+    this.selectedEmployee = undefined;
     this.employeeList = [];
   }
 
@@ -25,5 +25,9 @@ export class EmployeeListComponent implements OnInit {
   fetchEmployeeList(): void {
     of(employees)
       .subscribe(employees => this.employeeList = employees);
+  }
+
+  onSelect(employee: Employee) {
+    this.selectedEmployee = employee;
   }
 }
