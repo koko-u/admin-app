@@ -4,6 +4,7 @@ import { FormsModule } from "@angular/forms"
 
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
+import { EmployeeService } from "./employee.service"
 
 @NgModule({
   declarations: [
@@ -16,6 +17,9 @@ import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
   ],
   exports: [
     EmployeeListComponent,
+  ],
+  providers: [
+    EmployeeService,
   ]
 })
 export class EmployeesModule { }

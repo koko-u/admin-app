@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from "../employee.model"
-import { of } from "rxjs"
-import { employees } from "../mock/employees"
+import { EmployeeService } from "../employee.service"
 
 @Component({
   selector: 'app-employee-list',
@@ -13,7 +12,9 @@ export class EmployeeListComponent implements OnInit {
   selectedEmployee?: Employee;
   employeeList: Employee[];
 
-  constructor() {
+  constructor(
+    private employeeService: EmployeeService,
+  ) {
     this.selectedEmployee = undefined;
     this.employeeList = [];
   }
@@ -23,7 +24,8 @@ export class EmployeeListComponent implements OnInit {
   }
 
   fetchEmployeeList(): void {
-    of(employees)
+    this.employeeService
+      .getEmployeeList()
       .subscribe(employees => this.employeeList = employees);
   }
 

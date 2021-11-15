@@ -4,9 +4,7 @@ import { Observable, of } from "rxjs"
 import { Employee } from "./employee.model"
 import { employees } from "./mock/employees"
 
-@Injectable({
-  providedIn: EmployeesModule
-})
+@Injectable()
 export class EmployeeService {
 
   constructor() { }
