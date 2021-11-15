@@ -4,4 +4,12 @@ export class Employee {
     public name: string,
   ) {
   }
+
+  eq(other?: Employee) {
+    if (!other) {
+      return false;
+    }
+    return this.id === other.id &&
+           this.name === other.name;
+  }
 }

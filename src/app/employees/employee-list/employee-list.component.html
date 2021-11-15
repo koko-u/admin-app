@@ -3,6 +3,7 @@
   <li
     *ngFor="let employee of employeeList"
     (click)="onSelect(employee)"
+    [class.selected]="employee.eq(selectedEmployee)"
   >
     <span class="badge">{{ employee.id }}</span>
     {{ employee.name }}
