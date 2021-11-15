@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Employee } from "../employees/employee.model"
+import { EmployeeService } from "../employees/employee.service"
+import { Executive } from "../employees/employee-role.model"
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  executives: Employee[];
 
-  ngOnInit(): void {
+  constructor(
+    private employeeService: EmployeeService,
+  ) {
+    this.executives = [];
   }
 
+  ngOnInit(): void {
+    this.fetchExecutiveList();
+  }
+
+  fetchExecutiveList(): void {
+    this.employeeService.getEmployeeListByRole(Executive)
+      .subscribe(executives => this.executives = executives);
+  }
 }

@@ -1,7 +1,10 @@
+import { EmployeeRole } from "./employee-role.model"
+
 export class Employee {
   constructor(
     public id: number,
     public name: string,
+    public role: EmployeeRole,
   ) {
   }
 
@@ -14,6 +17,6 @@ export class Employee {
   }
 
   toString(): string {
-    return `Employee[id=${this.id}, name=${this.name}]`
+    return `Employee[id=${this.id}, name=${this.name}, role=${this.role}]`
   }
 }
