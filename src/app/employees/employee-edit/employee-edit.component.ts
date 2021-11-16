@@ -33,4 +33,8 @@ export class EmployeeEditComponent implements OnInit {
       .pipe(mergeMap(id => id ? this.employeeService.getEmployeeById(id) : of(undefined)))
       .subscribe(employee => this.employee = employee)
   }
+
+  goBack(): void {
+    this.location.back()
+  }
 }
