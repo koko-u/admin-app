@@ -2,6 +2,7 @@
 <div class="grid grid-pad">
   <a
     class="col-1-4"
+    [routerLink]="['/employees', executive.id]"
     *ngFor="let executive of executives"
   >
     <div class="module executive">

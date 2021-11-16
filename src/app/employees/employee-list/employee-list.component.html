@@ -2,14 +2,13 @@
 <ul class="employees">
   <li
     *ngFor="let employee of employeeList"
-    (click)="onSelect(employee)"
-    [class.selected]="employee.eq(selectedEmployee)"
+    [routerLink]="['/employees', employee.id]"
   >
     <span class="badge">{{ employee.id }}</span>
     {{ employee.name }}
   </li>
 </ul>
 
-<app-employee-edit
-  [employee]="selectedEmployee"
-></app-employee-edit>
+<!--<app-employee-edit-->
+<!--  [employee]="selectedEmployee"-->
+<!--&gt;</app-employee-edit>-->
