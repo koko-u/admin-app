@@ -6,6 +6,7 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
 import { EmployeeService } from "./employee.service"
 import { AppRoutingModule } from "../app-routing.module"
+import { HttpClientModule } from "@angular/common/http"
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { AppRoutingModule } from "../app-routing.module"
   imports: [
     CommonModule,
     FormsModule,
+    HttpClientModule,
     AppRoutingModule,
   ],
   exports: [
