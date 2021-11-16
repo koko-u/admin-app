@@ -2157,6 +2157,7 @@ __metadata:
     "@angular/router": ~13.0.0
     "@types/jasmine": ~3.10.0
     "@types/node": ^12.11.1
+    angular-in-memory-web-api: ^0.11.0
     jasmine-core: ~3.10.0
     karma: ~6.3.0
     karma-chrome-launcher: ~3.1.0
@@ -2256,6 +2257,17 @@ __metadata:
     require-from-string: ^2.0.2
     uri-js: ^4.2.2
   checksum: a2543fcc440ab4fca2d2c3d625c52cd24d7d7b61f4e07f1dd2fb4c478367a84cf6cd3cf03c61be061bf804ed4410f3e363b7e0afb44d417a0e9d4bbad67eee0a
+  languageName: node
+  linkType: hard
+
+"angular-in-memory-web-api@npm:^0.11.0":
+  version: 0.11.0
+  resolution: "angular-in-memory-web-api@npm:0.11.0"
+  peerDependencies:
+    "@angular/common": ">=8.0.0"
+    "@angular/core": ">=8.0.0"
+    rxjs: ^6.0.0
+  checksum: bddc5a58b75fb0ff78c72bd920e2581da78710186aa77742d8948bb455dae22df6d7911b0dbddfec11a7a83861f4ed1754d87fb1a0ddfebf72a73b51edd7ac4d
   languageName: node
   linkType: hard
 
