@@ -1,8 +1,9 @@
-export const Add = 'Add' as const;
-export const Init = 'Init' as const;
-export const Select = 'Select' as const;
-export const Filter = 'Filter' as const;
+export const Add = 'Add' as const
+export const Init = 'Init' as const
+export const Select = 'Select' as const
+export const Filter = 'Filter' as const
 export const Fetch = 'Fetch' as const
+export const Error = 'Error' as const
 
 export type OperationType
   = typeof Add
@@ -10,5 +11,6 @@ export type OperationType
   | typeof Select
   | typeof Filter
   | typeof Fetch
-;
+  | typeof Error
+
 
