@@ -4,6 +4,7 @@ export const Select = 'Select' as const
 export const Filter = 'Filter' as const
 export const Fetch = 'Fetch' as const
 export const Error = 'Error' as const
+export const Update = 'Update' as const
 
 export type OperationType
   = typeof Add
@@ -12,5 +13,6 @@ export type OperationType
   | typeof Filter
   | typeof Fetch
   | typeof Error
+  | typeof Update
 
 

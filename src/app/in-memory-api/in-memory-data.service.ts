@@ -23,4 +23,9 @@ export class InMemoryDataService implements InMemoryDbService {
     ];
     return of({ employees });
   }
+
+  put(reqInfo: RequestInfo) {
+    console.log({ reqInfo });
+    return undefined;
+  }
 }

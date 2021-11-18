@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core"
-import { catchError, EMPTY, map, Observable, tap, throwError } from "rxjs"
+import { catchError, EMPTY, ignoreElements, map, mergeMap, Observable, tap, throwError } from "rxjs"
 import { Employee } from "./employee.model"
 import { OperationService } from "../operation-logs/operation.service"
 import { EmployeeRole } from "./employee-role.model"
-import { Error, Fetch, Filter, Init } from "../operation-logs/operation-type.model"
-import { HttpClient } from "@angular/common/http"
+import { Error, Fetch, Filter, Init, Update } from "../operation-logs/operation-type.model"
+import { HttpClient, HttpHeaders } from "@angular/common/http"
 import { IEmployee } from "./employee.interface"
 
 @Injectable()
@@ -55,6 +55,19 @@ export class EmployeeService {
     )
   }
 
+  update(employee: Employee): Observable<void> {
+    const headers = { 'Content-Type': 'application/json' };
+
+    return this.httpClient.put(`${this.employeesEndpoint}`, employee, { headers })
+      .pipe(
+        tap(() => {
+          this.operationService.add(Update, `${this.constructor.name} - update ${employee}`)
+        }),
+        ignoreElements(),
+        catchError(this.handleError('update'))
+      )
+  }
+
   private handleError(methodName: string) {
 
     return (err: any): Observable<never> => {
@@ -64,4 +77,6 @@ export class EmployeeService {
       return EMPTY
     }
   }
+
+
 }

@@ -37,4 +37,11 @@ export class EmployeeEditComponent implements OnInit {
   goBack(): void {
     this.location.back()
   }
+
+  save(): void {
+    if (!this.employee) return;
+
+    this.employeeService.update(this.employee)
+      .subscribe({ complete: () => this.goBack() })
+  }
 }
