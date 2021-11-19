@@ -1,18 +1,14 @@
-export const Add = 'Add' as const
-export const Init = 'Init' as const
-export const Select = 'Select' as const
-export const Filter = 'Filter' as const
-export const Fetch = 'Fetch' as const
-export const Error = 'Error' as const
-export const Update = 'Update' as const
+const operations = [
+  'Add',
+  'Init',
+  'Select',
+  'Filter',
+  'Fetch',
+  'Error',
+  'Update',
+  'Create',
+  'Delete',
+] as const
 
-export type OperationType
-  = typeof Add
-  | typeof Init
-  | typeof Select
-  | typeof Filter
-  | typeof Fetch
-  | typeof Error
-  | typeof Update
-
+export type OperationType = typeof operations[number]
 

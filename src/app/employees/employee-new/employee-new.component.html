@@ -1,1 +1,15 @@
-<p>employee-new works!</p>
+<div>
+  <label>
+    Employee Name:
+    <input type="text" name="name" [(ngModel)]="name" trim>
+  </label>
+  <label>
+    Role:
+    <select [(ngModel)]="selectedRole">
+      <option *ngFor="let role of roles">
+        {{ role }}
+      </option>
+    </select>
+  </label>
+  <button (click)="add()">Add</button>
+</div>

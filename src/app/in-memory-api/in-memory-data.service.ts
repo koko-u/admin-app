@@ -24,8 +24,15 @@ export class InMemoryDataService implements InMemoryDbService {
     return of({ employees });
   }
 
-  put(reqInfo: RequestInfo) {
-    console.log({ reqInfo });
+  genId<T extends { id: any }>(collection: T[], collectionName: string): any {
+    if (collectionName === 'employees') {
+      return this.min(collection, elem => elem.id, 10) + 1
+    }
     return undefined;
+  }
+
+  private min<T>(collection: T[], fn: (t: T) => number, defaultValue: number): number {
+    return collection.map(fn)
+      .reduce((prev, curr) => Math.max(prev, curr), defaultValue)
   }
 }

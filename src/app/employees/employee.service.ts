@@ -1,9 +1,8 @@
 import { Injectable } from "@angular/core"
-import { catchError, EMPTY, ignoreElements, map, mergeMap, Observable, tap, throwError } from "rxjs"
+import { catchError, EMPTY, ignoreElements, map, Observable, tap, throwError } from "rxjs"
 import { Employee } from "./employee.model"
 import { OperationService } from "../operation-logs/operation.service"
 import { EmployeeRole } from "./employee-role.model"
-import { Error, Fetch, Filter, Init, Update } from "../operation-logs/operation-type.model"
 import { HttpClient, HttpHeaders } from "@angular/common/http"
 import { IEmployee } from "./employee.interface"
 
@@ -22,7 +21,7 @@ export class EmployeeService {
       .pipe(
         map(objs => objs.map(obj => new Employee(obj))),
         tap(employees => {
-          this.operationService.add(Fetch, `${this.constructor.name} - get all employees.`)
+          this.operationService.add('Fetch', `${this.constructor.name} - get all employees.`)
         }),
         catchError(this.handleError('getEmployeeList'))
       )
@@ -34,7 +33,7 @@ export class EmployeeService {
       .pipe(
         map(objs => objs.map(obj => new Employee(obj))),
         tap(employees => {
-          this.operationService.add(Filter, `${this.constructor.name} - filter employees by role=${role}.`)
+          this.operationService.add('Filter', `${this.constructor.name} - filter employees by role=${role}.`)
         }),
         catchError(this.handleError('getEmployeeListByRole'))
       )
@@ -49,10 +48,26 @@ export class EmployeeService {
     return this.httpClient.get<IEmployee>(`${this.employeesEndpoint}/${id}`).pipe(
         map(obj => new Employee(obj)),
         tap(employee => {
-          this.operationService.add(Fetch,`${this.constructor.name} - get ${employee}`)
+          this.operationService.add('Fetch',`${this.constructor.name} - get ${employee}`)
         }),
         catchError(this.handleError('getEmployeeId'))
     )
+  }
+
+  create(data: { name: string, role: EmployeeRole }): Observable<void> {
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+
+    return this.httpClient.post(this.employeesEndpoint, data, { headers })
+      .pipe(
+        tap(() => {
+          this.operationService.add('Create', `${this.constructor.name} - create ${data}`)
+        }),
+        ignoreElements(),
+        catchError(this.handleError('create'))
+      )
   }
 
   update(employee: Employee): Observable<void> {
@@ -61,7 +76,7 @@ export class EmployeeService {
     return this.httpClient.put(`${this.employeesEndpoint}`, employee, { headers })
       .pipe(
         tap(() => {
-          this.operationService.add(Update, `${this.constructor.name} - update ${employee}`)
+          this.operationService.add('Update', `${this.constructor.name} - update ${employee}`)
         }),
         ignoreElements(),
         catchError(this.handleError('update'))
@@ -73,7 +88,7 @@ export class EmployeeService {
     return (err: any): Observable<never> => {
       console.log({ handleError: err })
       console.log(this);
-      this.operationService.add(Error, `${this.constructor.name}#${methodName} - ${err}`)
+      this.operationService.add('Error', `${this.constructor.name}#${methodName} - ${err}`)
       return EMPTY
     }
   }
