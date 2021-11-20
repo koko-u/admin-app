@@ -24,3 +24,11 @@ export class Employee implements IEmployee {
     return `Employee[id=${this.id}, name=${this.name}, role=${this.role}]`
   }
 }
+
+export function createEmployee(obj: IEmployee): Employee {
+  return new Employee(obj)
+}
+
+export function createEmployeeList(objs: IEmployee[]): Employee[] {
+  return objs.map(createEmployee)
+}

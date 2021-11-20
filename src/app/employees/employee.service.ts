@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core"
-import { catchError, EMPTY, ignoreElements, map, Observable, tap, throwError } from "rxjs"
-import { Employee } from "./employee.model"
+import { catchError, EMPTY, ignoreElements, map, Observable, of, tap, throwError } from "rxjs"
+import { createEmployee, createEmployeeList, Employee } from "./employee.model"
 import { OperationService } from "../operation-logs/operation.service"
 import { EmployeeRole } from "./employee-role.model"
 import { HttpClient, HttpHeaders } from "@angular/common/http"
@@ -19,7 +19,7 @@ export class EmployeeService {
   getEmployeeList(): Observable<Employee[]> {
     return this.httpClient.get<IEmployee[]>(this.employeesEndpoint)
       .pipe(
-        map(objs => objs.map(obj => new Employee(obj))),
+        map(createEmployeeList),
         tap(employees => {
           this.operationService.add('Fetch', `${this.constructor.name} - get all employees.`)
         }),
@@ -31,11 +31,27 @@ export class EmployeeService {
 
     return this.httpClient.get<IEmployee[]>(this.employeesEndpoint, { params: { role }})
       .pipe(
-        map(objs => objs.map(obj => new Employee(obj))),
+        map(createEmployeeList),
         tap(employees => {
           this.operationService.add('Filter', `${this.constructor.name} - filter employees by role=${role}.`)
         }),
         catchError(this.handleError('getEmployeeListByRole'))
+      )
+  }
+
+  getEmployeeListByName(name: string): Observable<Employee[]> {
+    name = name.trim()
+    if (!name) {
+      return of([])
+    }
+
+    return this.httpClient.get<IEmployee[]>(this.employeesEndpoint, { params: { name }})
+      .pipe(
+        map(createEmployeeList),
+        tap(employees => {
+          this.operationService.add('Filter', `${this.constructor.name} - filter employees by name=${name}`)
+        }),
+        catchError(this.handleError('getEmployeeListByName'))
       )
   }
 
@@ -46,7 +62,7 @@ export class EmployeeService {
     }
 
     return this.httpClient.get<IEmployee>(`${this.employeesEndpoint}/${id}`).pipe(
-        map(obj => new Employee(obj)),
+        map(createEmployee),
         tap(employee => {
           this.operationService.add('Fetch',`${this.constructor.name} - get ${employee}`)
         }),
@@ -62,7 +78,7 @@ export class EmployeeService {
 
     return this.httpClient.post<IEmployee>(this.employeesEndpoint, data, { headers })
       .pipe(
-        map(created => new Employee(created)),
+        map(createEmployee),
         tap(employee => {
           this.operationService.add('Create', `${this.constructor.name} - create ${employee}`)
         }),
@@ -100,7 +116,6 @@ export class EmployeeService {
 
     return (err: any): Observable<never> => {
       console.log({ handleError: err })
-      console.log(this);
       this.operationService.add('Error', `${this.constructor.name}#${methodName} - ${err}`)
       return EMPTY
     }
