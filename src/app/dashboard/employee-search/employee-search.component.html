@@ -1,1 +1,18 @@
-<p>employee-search works!</p>
+<h4>
+  <label for="search-box">
+    Search Employee
+  </label>
+</h4>
+
+<input
+  type="text"
+  id="search-box"
+  [formControl]="name"
+>
+
+<ul class="search-result">
+  <li *ngFor="let result of results$ | async">
+    <a [routerLink]="['/employees', result.id]">{{ result.name }}</a>
+  </li>
+</ul>
+

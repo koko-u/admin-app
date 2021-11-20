@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from "ngx-typesafe-forms"
+import { concatMap, Observable, of } from "rxjs"
+import { EmployeeService } from "../../employees/employee.service"
+import { Employee } from "../../employees/employee.model"
+
 
 @Component({
   selector: 'app-employee-search',
@@ -7,9 +12,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeSearchComponent implements OnInit {
 
-  constructor() { }
+  name = new FormControl<string>('')
+  results$: Observable<Employee[]> = of([])
+
+  constructor(
+    private employeeService: EmployeeService,
+  ) { }
 
   ngOnInit(): void {
+    this.results$ = this.name.value$
+      .pipe(
+        concatMap(name => this.employeeService.getEmployeeListByName(name))
+      )
   }
-
 }

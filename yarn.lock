@@ -2165,6 +2165,7 @@ __metadata:
     karma-jasmine: ~4.0.0
     karma-jasmine-html-reporter: ~1.7.0
     ngx-trim-directive: ^1.1.0
+    ngx-typesafe-forms: ^1.5.2
     rxjs: ~7.4.0
     tslib: ^2.3.0
     typescript: ~4.4.3
@@ -5800,6 +5801,18 @@ fsevents@~2.3.2:
     "@angular/common": ">= 5.0.0"
     "@angular/core": ">= 5.0.0"
   checksum: 31ad68405b59a0fc5268d4382e6390440a019c5b62d5383b3755e45b1810f45beddab45155e60e814fd8195abf2122063891460ad3834dd2273f00e6e9ee6fbc
+  languageName: node
+  linkType: hard
+
+"ngx-typesafe-forms@npm:^1.5.2":
+  version: 1.5.2
+  resolution: "ngx-typesafe-forms@npm:1.5.2"
+  dependencies:
+    tslib: ^2.0.0
+  peerDependencies:
+    "@angular/forms": ^12.0.0
+    rxjs: ^6.0.0
+  checksum: 97dedce90cdd0b8b26ecb6a2285e62d77228194a5ce7263ff57043f6ae9aa4d54e53e15f534cd0c914988bda168f1792bc9b71b0b487ba5772b021fbd886a654
   languageName: node
   linkType: hard
 
