@@ -8,13 +8,15 @@ import { NgxTrimDirectiveModule } from "ngx-trim-directive"
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
 import { EmployeeService } from "./employee.service"
-import { EmployeeNewComponent } from './employee-new/employee-new.component'
+import { EmployeeNewComponent } from './employee-new/employee-new.component';
+import { EmployeeItemComponent } from './employee-list/employee-item/employee-item.component'
 
 @NgModule({
   declarations: [
     EmployeeListComponent,
     EmployeeEditComponent,
-    EmployeeNewComponent
+    EmployeeNewComponent,
+    EmployeeItemComponent
   ],
   imports: [
     CommonModule,
