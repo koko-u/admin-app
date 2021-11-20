@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from "ngx-typesafe-forms"
-import { concatMap, Observable, of } from "rxjs"
+import { concatMap, debounce, debounceTime, distinctUntilChanged, Observable, of, switchMap } from "rxjs"
 import { EmployeeService } from "../../employees/employee.service"
 import { Employee } from "../../employees/employee.model"
 
@@ -22,7 +22,9 @@ export class EmployeeSearchComponent implements OnInit {
   ngOnInit(): void {
     this.results$ = this.name.value$
       .pipe(
-        concatMap(name => this.employeeService.getEmployeeListByName(name))
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap(name => this.employeeService.getEmployeeListByName(name))
       )
   }
 }
