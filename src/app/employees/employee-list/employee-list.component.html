@@ -5,10 +5,11 @@
 <ul class="employees">
   <li
     *ngFor="let employee of employeeList"
-    [routerLink]="['/employees', employee.id]"
   >
-    <span class="badge">{{ employee.id }}</span>
-    {{ employee.name }}
+    <a [routerLink]="['/employees', employee.id]">
+      <span class="badge">{{ employee.id }}</span>
+      {{ employee.name }}
+    </a>
   </li>
 </ul>
 
