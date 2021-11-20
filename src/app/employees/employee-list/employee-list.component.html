@@ -6,10 +6,16 @@
   <li
     *ngFor="let employee of employeeList"
   >
-    <a [routerLink]="['/employees', employee.id]">
-      <span class="badge">{{ employee.id }}</span>
-      {{ employee.name }}
-    </a>
+    <app-employee-item [employee]="employee"></app-employee-item>
+<!--    <a [routerLink]="['/employees', employee.id]">-->
+<!--      <span class="badge">{{ employee.id }}</span>-->
+<!--      {{ employee.name }}-->
+<!--    </a>-->
+<!--    <button-->
+<!--      class="delete"-->
+<!--      title="Delete the employee"-->
+<!--      (click)="delete(employee)"-->
+<!--    >x</button>-->
   </li>
 </ul>
 
