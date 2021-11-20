@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from "@angular/core"
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core"
 import { Employee } from "../../employee.model"
+import { EmployeeService } from "../../employee.service"
 
 @Component({
   selector: 'app-employee-item',
@@ -11,12 +12,22 @@ export class EmployeeItemComponent implements OnInit {
   @Input()
   employee?: Employee
 
-  constructor() { }
+  @Output()
+  deleted: EventEmitter<void> = new EventEmitter<void>();
+
+  constructor(
+    private employeeService: EmployeeService
+  ) { }
 
   ngOnInit(): void {
   }
 
-  delete(employee: Employee) {
-    console.log(`delete ${employee}`)
+  delete() {
+    if (!this.employee) return;
+
+    this.employeeService.delete(this.employee)
+      .subscribe({
+        complete: () => this.deleted.emit()
+      })
   }
 }

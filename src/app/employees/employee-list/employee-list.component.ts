@@ -21,11 +21,7 @@ export class EmployeeListComponent implements OnInit {
     this.fetchEmployeeList();
   }
 
-  onEmployeeAdded() {
-    this.fetchEmployeeList();
-  }
-
-  private fetchEmployeeList(): void {
+  fetchEmployeeList(): void {
     this.employeeService
       .getEmployeeList()
       .subscribe(employees => this.employeeList = employees);

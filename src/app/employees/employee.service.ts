@@ -84,6 +84,18 @@ export class EmployeeService {
       )
   }
 
+  delete(employee: Employee): Observable<void> {
+
+    return this.httpClient.delete<void>(`${this.employeesEndpoint}/${employee.id}`)
+      .pipe(
+        tap(() => {
+          this.operationService.add('Delete', `${this.constructor.name} - delete ${employee}`)
+        }),
+        ignoreElements(),
+        catchError(this.handleError('delete'))
+      )
+  }
+
   private handleError(methodName: string) {
 
     return (err: any): Observable<never> => {
@@ -93,6 +105,4 @@ export class EmployeeService {
       return EMPTY
     }
   }
-
-
 }
