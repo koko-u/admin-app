@@ -60,10 +60,11 @@ export class EmployeeService {
       'Content-Type': 'application/json'
     })
 
-    return this.httpClient.post(this.employeesEndpoint, data, { headers })
+    return this.httpClient.post<IEmployee>(this.employeesEndpoint, data, { headers })
       .pipe(
-        tap(() => {
-          this.operationService.add('Create', `${this.constructor.name} - create ${data}`)
+        map(created => new Employee(created)),
+        tap(employee => {
+          this.operationService.add('Create', `${this.constructor.name} - create ${employee}`)
         }),
         ignoreElements(),
         catchError(this.handleError('create'))
